@@ -1,0 +1,1 @@
+json.partial! 'shipment_product', shipment_product: @shipment_product
