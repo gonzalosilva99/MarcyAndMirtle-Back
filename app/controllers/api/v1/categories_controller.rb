@@ -3,7 +3,6 @@ module Api
         class CategoriesController < ApplicationController
             before_action :authenticate_user
             before_action :set_categories, only: %i[index show]
-            load_and_authorize_resource
 
             def index 
                 render json: @categories.as_json
