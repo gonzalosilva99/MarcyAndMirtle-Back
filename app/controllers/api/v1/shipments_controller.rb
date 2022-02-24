@@ -2,6 +2,7 @@ module Api
     module V1
         class ShipmentsController < ApplicationController
             before_action :set_shipments, only: %i[index show]
+            before_action :authenticate_user
 
             def index;
             end

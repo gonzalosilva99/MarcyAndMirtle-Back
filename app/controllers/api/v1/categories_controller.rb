@@ -1,14 +1,16 @@
 module Api
     module V1
         class CategoriesController < ApplicationController
+            before_action :authenticate_user
             before_action :set_categories, only: %i[index show]
+            load_and_authorize_resource
 
             def index 
                 render json: @categories.as_json
             end
              
             def show
-                binding.pry
+                authorize! :index, @categories
                 return render json: @categories.find(params[:id]).as_json if params[:id]
             end
 

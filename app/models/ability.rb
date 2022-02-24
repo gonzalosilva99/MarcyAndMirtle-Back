@@ -1,17 +1,18 @@
 class Ability
   include CanCan::Ability
 
-  # def initialize(user)
+  def initialize(user)
 
-  #   if user.main? #  abilities of main store
-  #     can [:create, :index, :show], Shipment
-  #     can [:create, :index, :show], ShipmentProduct
-  #     can [:create, :index, :show], Product 
-  #   elsif user.subsidiary?
-  #     can [:index, :show], Shipment
-  #     can [:index, :show], ShipmentProduct
-  #     can [:index, :show], Product
-  #   end
+    if user.main? #  abilities of main store
+      can [:create, :index, :show], Shipment
+      can [:create, :index, :show], ShipmentProduct
+      can [:create, :index, :show], Product 
+      can [:create, :index, :show], Category 
+    elsif user.subsidiary?
+      can [:index, :show], Shipment
+      can [:index, :show], ShipmentProduct
+      can [:index, :show], Product
+    end
 
     # Define abilities for the passed in user here. For example:
     #

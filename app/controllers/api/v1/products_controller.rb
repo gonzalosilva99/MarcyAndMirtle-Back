@@ -2,11 +2,13 @@ module Api
     module V1
         class ProductsController < ApplicationController
             before_action :set_products, only: %i[index show]
+            before_action :authenticate_user
+            
             def index 
                 if params[:search]
                     render json: @product = Product.where("name like ?", "%#{params[:search]}%")
                 else
-                    @products
+                    render json: @products.as_json
                 end 
             end
              

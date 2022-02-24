@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::API
+    include CanCan::ControllerAdditions
     rescue_from ActiveRecord::RecordNotFound, with: :handle_not_found
     respond_to :json
     private
+
+    def current_ability
+      unless @current_ability.present?
+        @current_ability = Ability.new(current_user)      
+      end
+  
+      @current_ability
+    end
 
     def handle_not_found(error)
         render json: { error: error.message }, status: :not_found
