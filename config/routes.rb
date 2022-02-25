@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :products, only: [:index, :show, :create]
       resources :shipments, only: [:index, :show, :create]
-      resources :categories, only: [:index, :show, :create]
+      resources :categories, only: [:index, :show, :create] do
+        get 'products', :on => :member
+       end
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

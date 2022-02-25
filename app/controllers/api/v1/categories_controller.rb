@@ -1,16 +1,15 @@
 module Api
     module V1
         class CategoriesController < ApplicationController
-            before_action :authenticate_user
-            before_action :set_categories, only: %i[index show]
+            before_action :authenticate_user!
+            before_action :set_categories
+            load_and_authorize_resource
 
             def index 
                 render json: @categories.as_json
             end
              
-            def show
-                authorize! :index, @categories
-                return render json: @categories.find(params[:id]).as_json if params[:id]
+            def show;
             end
 
             def create
@@ -21,6 +20,10 @@ module Api
                        status: :unprocessable_entity
             end
 
+            def products 
+               @category = @categories.find(params[:id]) if params[:id]  
+            end
+
             private 
 
             def category_params
@@ -29,7 +32,7 @@ module Api
                                         )
             end
 
-            def set_categories
+            def set_categories 
                 @categories = Category.all
             end
         end

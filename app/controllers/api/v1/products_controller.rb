@@ -1,19 +1,15 @@
 module Api
     module V1
         class ProductsController < ApplicationController
-            before_action :set_products, only: %i[index show]
             before_action :authenticate_user
+            load_and_authorize_resource
             
             def index 
-                if params[:search]
-                    render json: @product = Product.where("name like ?", "%#{params[:search]}%")
-                else
-                    render json: @products.as_json
-                end 
+                binding.pry
+                @products = Product.where("name like ?", "%#{params[:search]}%") if params[:search]
             end
              
-            def show
-                render json: @products.find(params[:id]).as_json
+            def show;
             end
 
             def create
@@ -33,10 +29,6 @@ module Api
 
             def product_params
                 params.require(:product).permit(:name, :description, :price, :category_id, :search)
-            end
-
-            def set_products
-                @products = Product.all
             end
         end
     end
