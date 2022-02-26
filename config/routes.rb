@@ -14,11 +14,12 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      get 'shipments/stats_by_month', to: 'shipments#stats_by_month', as: 'stats_by_month'
       resources :products, only: [:index, :show, :create]
       resources :shipments, only: [:index, :show, :create]
       resources :categories, only: [:index, :show, :create] do
         get 'products', :on => :member
-       end
+      end
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

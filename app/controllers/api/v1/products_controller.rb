@@ -5,7 +5,6 @@ module Api
             load_and_authorize_resource
             
             def index 
-                binding.pry
                 @products = Product.where("name like ?", "%#{params[:search]}%") if params[:search]
             end
              
