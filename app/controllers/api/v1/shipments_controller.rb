@@ -10,6 +10,8 @@ module Api
                     date = Date.parse(params[:date])
                     @shipments = @shipments.where(:created_at => date.beginning_of_day .. date.end_of_day)
                 end
+                @shipments = @shipments.order(:created_at)
+                binding.pry
             end
 
             def show;
