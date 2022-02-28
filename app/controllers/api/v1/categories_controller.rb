@@ -20,6 +20,15 @@ module Api
                        status: :unprocessable_entity
             end
 
+            def update
+                @category = Category.find params[:id]
+                @category.update category_params
+                return render :show unless @category.invalid?
+        
+                render json: { errors: @category.errors.messages },
+                       status: :unprocessable_entity
+            end
+
             def products 
                @category = @categories.find(params[:id]) if params[:id]  
             end

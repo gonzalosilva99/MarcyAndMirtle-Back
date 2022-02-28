@@ -10,8 +10,7 @@ module Api
                     date = Date.parse(params[:date])
                     @shipments = @shipments.where(:created_at => date.beginning_of_day .. date.end_of_day)
                 end
-                @shipments = @shipments.order(:created_at)
-                binding.pry
+                @shipments = @shipments.order(created_at: :desc)
             end
 
             def show;
@@ -21,6 +20,15 @@ module Api
                 @shipment = Shipment.create(shipment_params)
             end
             
+            def update
+                @shipment = Shipment.find params[:id]
+                @shipment.update shipment_params
+                return render :show unless @shipment.invalid?
+        
+                render json: { errors: @shipment.errors.messages },
+                       status: :unprocessable_entity
+            end
+
             def stats_by_month
                 if params[:year] and params[:month]
                     year = params[:year].to_i

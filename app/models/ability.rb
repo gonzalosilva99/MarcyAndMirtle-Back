@@ -3,10 +3,10 @@ class Ability
 
   def initialize(user)
     if user.main? #  abilities of main store
-      can [:create, :index, :show, :stats_by_month], Shipment
-      can [:create, :index, :show], ShipmentProduct
-      can [:create, :index, :show], Product 
-      can [:create, :index, :show, :products], Category 
+      can [:create, :index, :show, :stats_by_month, :update], Shipment
+      can [:create, :index, :show, :update], ShipmentProduct
+      can [:create, :index, :show, :update], Product 
+      can [:create, :index, :show, :products, :update], Category 
     elsif user.subsidiary?
       can [:index, :show, :stats_by_month], Shipment
       can [:index, :show], ShipmentProduct

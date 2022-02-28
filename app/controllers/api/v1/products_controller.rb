@@ -19,6 +19,15 @@ module Api
                        status: :unprocessable_entity
             end
 
+            def update
+                @product = Product.find params[:id]
+                @product.update product_params
+                return render :show unless @product.invalid?
+        
+                render json: { errors: @product.errors.messages },
+                       status: :unprocessable_entity
+            end
+
             def search
                 search = params[:search]
                 @product = Product.where("name like ?", "#{search}%")
