@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get 'shipments/stats_by_month', to: 'shipments#stats_by_month', as: 'stats_by_month'
-      resources :products, only: [:index, :show, :create, :update]
-      resources :shipments, only: [:index, :show, :create, :update]
-      resources :categories, only: [:index, :show, :create, :update] do
+      resources :products, only: [:index, :show, :create, :update, :delete]
+      resources :shipments, only: [:index, :show, :create, :update, :delete]
+      resources :categories, only: [:index, :show, :create, :update, :delete] do
         get 'products', :on => :member
       end
     end

@@ -20,6 +20,10 @@ module Api
                 @shipment = Shipment.create(shipment_params)
             end
             
+            def destroy
+            @survey.destroy
+            end
+
             def update
                 @shipment = Shipment.find params[:id]
                 @shipment.update shipment_params
