@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Main.create!(email: 'main@marcyandmirtle.com', password:'MainM&Mpsswd', password_confirmation: 'MainM&Mpsswd')
+Subsidiary.create!(email: 'subsidiary@marcyandmirtle.com', password:'M&MpsswdSubsidiary', password_confirmation: 'M&MpsswdSubsidiary')
+load './loadinventory.rb'
