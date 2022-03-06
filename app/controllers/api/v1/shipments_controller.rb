@@ -17,16 +17,24 @@ module Api
             end
 
             def create
-                @shipment = Shipment.create(shipment_params)
+                @shipment = Shipment.create(shipment_params.merge(status: :requested, modified: false))
             end
             
             def destroy
-            @survey.destroy
+                @survey.destroy
             end
 
             def update
                 @shipment = Shipment.find params[:id]
+                old_ship_prod = @shipment.shipment_products.dup
+                @shipment.shipment_products.each do |shp|
+                    ShipmentProduct.find(shp.id).destroy
+                end
                 @shipment.update shipment_params
+                if old_ship_prod != @shipment.shipment_products
+                    @shipment.modified = true 
+                    @shipment.save
+                end 
                 return render :show unless @shipment.invalid?
         
                 render json: { errors: @shipment.errors.messages },
@@ -85,7 +93,7 @@ module Api
             end
             def shipment_params
                 params.require(:shipment)
-                      .permit(:id, :date, :created_at,
+                      .permit(:id, :date, :created_at, :status, :modified,
                               shipment_products_attributes: [:product_id, :units ]
                     )
             end
