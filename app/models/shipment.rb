@@ -9,4 +9,10 @@ class Shipment < ApplicationRecord
         status = :requested if status.nil?
         modified = false if modified.nil?
     end
+
+    def duplicate
+        c = Cart.new cart_id: cart.id, cart_user_id: cart_user.id
+        # copy another attributes inside this method
+        c
+    end
 end

@@ -26,12 +26,10 @@ module Api
 
             def update
                 @shipment = Shipment.find params[:id]
-                old_ship_prod = @shipment.shipment_products.dup
-                @shipment.shipment_products.each do |shp|
-                    ShipmentProduct.find(shp.id).destroy
-                end
+                old_ship_prod = map_old_ship_prod
+                @shipment.shipment_products.destroy_all
                 @shipment.update shipment_params
-                if old_ship_prod != @shipment.shipment_products
+                if was_modified(old_ship_prod, @shipment.shipment_products)
                     @shipment.modified = true 
                     @shipment.save
                 end 
@@ -63,6 +61,22 @@ module Api
             end
 
             private
+
+            def map_old_ship_prod
+                map = []
+                @shipment.shipment_products.each do |shp|
+                    map[shp.product_id] = shp.units
+                end
+                map
+            end
+            
+            def was_modified(old, new)
+                new.each do |shp|
+                    return true if old[shp.product_id] != shp.units
+                end
+                return true if(old.size != new.size)
+                false
+            end
 
             def add_to_shipment(shipment, date,price)
                 if @amount_per_shipping.find {|i| i[:id] == shipment} 
