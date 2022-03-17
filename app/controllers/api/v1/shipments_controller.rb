@@ -47,6 +47,7 @@ module Api
                     @amount_by_category = {}
                     @amount_by_product = {}
                     @shipments = Shipment.where("extract(month from created_at) = ? and extract(year from created_at) = ?", month, year)
+                    @shipments = @shipments.filter_by_status('accepted')
                     @shipments.each do |shipment|
                         shipment.shipment_products.each do |ship_prod|
                             category = ship_prod.product.category

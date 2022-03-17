@@ -10,6 +10,8 @@ class Shipment < ApplicationRecord
         modified = false if modified.nil?
     end
 
+    scope :filter_by_status, -> (status) { where status: status }
+    
     def duplicate
         c = Cart.new cart_id: cart.id, cart_user_id: cart_user.id
         # copy another attributes inside this method

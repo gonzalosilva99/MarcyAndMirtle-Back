@@ -1,101 +1,23 @@
-name,price,category
-Plain Croissants - Piece,0.83,Pastries/Sandwitches
-Multigrain Croissant - Piece,1.05,Pastries/Sandwitches
-Chocolate croissants - Piece,1.07,Pastries/Sandwitches
-Almond croissants - Piece,1.29,Pastries/Sandwitches
-Vegan Blueberry Croisant - Piece,1.64,Pastries/Sandwitches
-Cheese Danish - Piece,1.3,Pastries/Sandwitches
-Apple Leaf - Piece,1.18,Pastries/Sandwitches
-Blueberry Cheese - Piece,1.64,Pastries/Sandwitches
-Scone - Piece,1.03,Pastries/Sandwitches
-Custard Cups - Piece,0.77,Pastries/Sandwitches
-Apple crumb cakes - Piece,1.28,Pastries/Sandwitches
-Spinach & Feta - Piece,1.82,Pastries/Sandwitches
-Potatoe Mushroom - Piece,0.44,Pastries/Sandwitches
-Frittata - Piece,0.78,Pastries/Sandwitches
-Bagels - Piece,0.54,Pastries/Sandwitches
-Egg and Cheese - Piece,2,Pastries/Sandwitches
-Mozzarella - Piece,2,Pastries/Sandwitches
-Goat Cheese and Pear - Piece,2,Pastries/Sandwitches
-Tempeh - Piece,2.5,Pastries/Sandwitches
-Chili Wrap - Piece,2.5,Pastries/Sandwitches
-Small Cookies Chocolate - Piece,0.43,Pastries/Sandwitches
-Small Cookies White choc - Piece,0.43,Pastries/Sandwitches
-Small Cookies Peanut - Piece,0.43,Pastries/Sandwitches
-Small Cookies Smores - Piece,0.43,Pastries/Sandwitches
-Large Cookies Chocolate - Piece,1.08,Pastries/Sandwitches
-Whole Milk - Piece,2.5,dairy
-Skim Milk - Piece,2.38,dairy
-Half and Half Milk - Piece,2.75,dairy
-Oat milk - Piece,2.88,dairy
-Almond milk - Piece,3.2,dairy
-Soy Milk - Piece,2.25,dairy
-Cream cheesse - Tub,11.55,dairy
-Vegan cream cheese - Tub,3.29,dairy
-Ethiopian - 5lb,45.5,coffee/tea/powders
-Espresso - 5lb,44,coffee/tea/powders
-Decaf - 5lb,52.5,coffee/tea/powders
-Cold brew - 5lb,51,coffee/tea/powders
-Retail Coffee Bag 12oz - Bag,10,coffee/tea/powders
-Chai - 2lb,13.5,coffee/tea/powders
-Chocolate Powder - 4lb,26,coffee/tea/powders
-Matcha - 1kg,207,coffee/tea/powders
-Hojicha - 1kg,66,coffee/tea/powders
-Tumeric - ,41,coffee/tea/powders
-Vanilla syrup - Bottle,7.2,additional Ingredients
-Hazelnut syrup - Bottle,7.2,additional Ingredients
-Caramel syrup - Bottle,7.2,additional Ingredients
-Peppermint syrup - Bottle,7.2,additional Ingredients
-Suger Free Vanilla - Bottle,7.2,additional Ingredients
-Pumpkin Spice Syrup - Bottle,7.2,additional Ingredients
-Almond syrup - Bottle,7.2,additional Ingredients
-Assam tea - Box,7.5,coffee/tea/powders
-Sencha Green tea - Box,7.5,coffee/tea/powders
-Jasmine tea - Box,7.5,coffee/tea/powders
-Bai Mu Dan tea - Box,7.5,coffee/tea/powders
-Darjeeling tea - Box,7.5,coffee/tea/powders
-Chamomile tea - Box,7.5,coffee/tea/powders
-Peppermint tea - Box,7.5,coffee/tea/powders
-Tamayokucha tea - Box,7.5,coffee/tea/powders
-Earl grey tea - Box,7.5,coffee/tea/powders
-Berry tea - Box,7.5,coffee/tea/powders
-OJ - bottles,3,retail fridge
-Beet/Carrot - bottles,3,retail fridge
-Carrot/orange - bottles,3,retail fridge
-Celery/Apple - bottles,3,retail fridge
-Water - Case,7.176,retail fridge
-Coconut water - Pack,15.588,retail fridge
-Kombucha - Pack,14,retail fridge
-Espresso cups - Box,2.4,paper goods
-Espresso lids - Box,2.34,paper goods
-Small-hot lids - Box,5.8,paper goods
-Large-hot lids - Box,6.84,paper goods
-Straws - Small Box,2.64,paper goods
-Stir-sticks wood - Small Box,4.428,paper goods
-Stir-sticks platic - Small Box,9.48,paper goods
-Paper napkins - Bundle,1.884,paper goods
-Carrying trays - Piece,0.396,paper goods
-Latex Gloves - Small Box,5.88,paper goods
-Brown sandwich bag - Box,20.688,paper goods
-Eggs - Box,7.188,additional Ingredients
-Avocado - Piece,1.8,additional Ingredients
-Arugula - Bunch,2.388,additional Ingredients
-Bananas - Piece,0.3,additional Ingredients
-Tomatoes - Piece,1.2,additional Ingredients
-Onion - Piece,1.2,additional Ingredients
-White sugar - Bag,2.34,additional Ingredients
-Honey - Bottle,5.196,additional Ingredients
-Cinnamon - Bottle,3.588,additional Ingredients
-Nutella - Bottle,4.8,additional Ingredients
-Olive oil - Bottle,15.588,additional Ingredients
-Salt - Bottle,3.348,additional Ingredients
-Pepper - Bottle,5.628,additional Ingredients
-Peanut Butter - Bottle,6,additional Ingredients
-Maple syrup - Bottle,13.188,additional Ingredients
-Capers - Bottle,6.828,additional Ingredients
-Franks hot sauce - Bottle,4.008,additional Ingredients
-Rags - Bag,21.588,Cleaning Supplies
-Bleach - Bottle,10.788,Cleaning Supplies
-Windex - Bottle,4.8,Cleaning Supplies
-Cascade - Bottle,11.268,Cleaning Supplies
-Palmolive - Bottle,9.588,Cleaning Supplies
+﻿name,price,category
+Butter - Bar,0,dairy
+Iced Tea bags - 1 piece,0,coffee/tea/powders
+Perrier - Case,0,retail fridge
+Sleeves - Box,0,paper goods
+Coffee filters - Stack ,0,paper goods
+Drink Carrying Bags - Bag,0,paper goods
+Coffee Box - Piece,0,paper goods
+Paper Towel - Roll,0,paper goods
+Brown Paper Towels - Packet,0,paper goods
+Whitefish - packet,0,additional Ingredients
+Splenda single packets  - box,0,additional Ingredients
+Brown suger single packets - box,0,additional Ingredients
+White sugar single packets - box,0,additional Ingredients
+Jelly - Bottle,0,additional Ingredients
+smoked salmon - packet,0,additional Ingredients
+Fig bars - box,0,additional Ingredients
+Kind bars - box,0,additional Ingredients
+Cliff bars - box,0,additional Ingredients
+Kinder Bueno - box,0,additional Ingredients
+Cafizza - Bottle,0,Cleaning Supplies
+Sponge - Bag,0,Cleaning Supplies
+Fabuloso - Bottle ,0,Cleaning Supplies
