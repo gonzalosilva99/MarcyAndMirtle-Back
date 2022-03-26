@@ -29,6 +29,19 @@ module Api
                        status: :unprocessable_entity
             end
 
+            def swap_categories_order
+                if params[:category_id1]  && params[:category_id2]
+                    category_1 = Category.find params[:category_id1]
+                    category_2 = Category.find params[:category_id2]
+                    orderaux = category_1.order
+                    category_1.update(order: category_2.order)
+                    category_2.update(order: orderaux)
+                    return render json: { message: "Order changed succesfully " }, status: :ok 
+                end
+                render json: { errors: "There was an error with the products" },
+                        status: :unprocessable_entity
+            end
+
             def products 
                @category = @categories.find(params[:id]) if params[:id]  
             end
@@ -36,9 +49,8 @@ module Api
             private 
 
             def category_params
-                params.require(:category).permit(:name, 
-                                        products: [:id, :name, :price, :description]
-                                        )
+                params.require(:category).permit(:name,:category_id2, :category_id1,
+                                        products: [:id, :name, :price, :description])
             end
 
             def set_categories 

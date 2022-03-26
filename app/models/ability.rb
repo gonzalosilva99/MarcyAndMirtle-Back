@@ -5,8 +5,8 @@ class Ability
     if user.main? #  abilities of main store
       can [:index, :show, :stats_by_month, :update], Shipment
       can [:create, :index, :show, :update], ShipmentProduct
-      can [:create, :index, :show, :update], Product 
-      can [:create, :index, :show, :products, :update], Category 
+      can [:create, :index, :show, :update, :swap_products_order], Product 
+      can [:create, :index, :show, :products, :update,:swap_categories_order], Category 
     elsif user.subsidiary?
       can [:create, :index, :show, :stats_by_month], Shipment
       can [:index, :show], ShipmentProduct
