@@ -8,10 +8,10 @@ class Ability
       can [:create, :index, :show, :update, :swap_products_order], Product 
       can [:create, :index, :show, :products, :update,:swap_categories_order], Category 
     elsif user.subsidiary?
-      can [:create, :index, :show, :stats_by_month], Shipment
+      can [:create, :index, :show, :stats_by_month, ], Shipment
       can [:index, :show], ShipmentProduct
-      can [:index, :show], Product
-      can [:create, :index, :show, :products], Category 
+      can [:index, :show, :swap_products_order], Product
+      can [:create, :index, :show, :products, :swap_categories_order], Category 
     end
 
     # Define abilities for the passed in user here. For example:

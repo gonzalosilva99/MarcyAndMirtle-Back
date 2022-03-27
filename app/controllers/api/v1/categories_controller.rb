@@ -6,6 +6,7 @@ module Api
             load_and_authorize_resource
 
             def index 
+                @categories = Category.order(:order)
                 render json: @categories.as_json
             end
              
@@ -30,23 +31,32 @@ module Api
             end
 
             def swap_categories_order
-                if params[:category_id1]  && params[:category_id2]
-                    category_1 = Category.find params[:category_id1]
-                    category_2 = Category.find params[:category_id2]
-                    orderaux = category_1.order
-                    category_1.update(order: category_2.order)
-                    category_2.update(order: orderaux)
-                    return render json: { message: "Order changed succesfully " }, status: :ok 
+                if params["categories"]
+                    params["categories"].each do |cat|
+                        category = Category.find(cat[0].to_i)
+                        category.order = cat[1]
+                        category.save
+                    end
+                    return render json: { message: "Orders changed succesfully " }, status: :ok 
                 end
-                render json: { errors: "There was an error with the products" },
+                render json: { errors: "There was an error with the categories" },
                         status: :unprocessable_entity
             end
 
             def products 
-               @category = @categories.find(params[:id]) if params[:id]  
+               @category = @categories.find(params[:id]) if params[:id]
+               @category.products = @category.products.sort_by{|e| e[:order]}
             end
 
             private 
+
+            def get_old_category_order
+                categories = []
+                Category.all.order(:order).each do |cat|
+                    categories[cat.id] = cat.order
+                end
+                categories
+            end
 
             def category_params
                 params.require(:category).permit(:name,:category_id2, :category_id1,

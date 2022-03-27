@@ -4,8 +4,12 @@ module Api
             before_action :authenticate_user
             load_and_authorize_resource
             
-            def index 
-                @products = Product.where("name like ?", "%#{params[:search]}%") if params[:search]
+            def index
+                if params[:search]
+                    @products = Product.where("name like ?", "%#{params[:search]}%")
+                else 
+                    @products = Product.all.order(:order)
+                end
             end
              
             def show;
@@ -34,21 +38,25 @@ module Api
             end
 
             def swap_products_order
-                if params[:product_id1]  && params[:product_id2]
-                    product_1 = Product.find params[:product_id1]
-                    product_2 = Product.find params[:product_id2]
-                    orderaux = product_1.order
-                    product_1.update(order: product_2.order)
-                    product_2.update(order: orderaux)
-                    return render json: { message: "Order changed succesfully " }, status: :ok 
-                end 
+                #Precondition: This receive all the products and their order for an specific category
+                #params[prodid] indicates the new order of prod with prodid
+                # products_of_category = nil
+                products_order = params["products"]
+                if products_order
+                    products_order.each do |prod|
+                        product = Product.find(prod[0].to_i)
+                        product.order = prod[1] 
+                        product.save
+                    end
+                    return render json: { message: "Orders changed succesfully " }, status: :ok 
+                end
                 render json: { errors: "There was an error with the products" },
                            status: :unprocessable_entity
                 
             end
             
-            private 
-
+            private
+            
             def product_params
                 params.require(:product).permit(:name, :description, :price, :category_id, :search, :product_id2, :product_id1)
             end
