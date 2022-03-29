@@ -26,13 +26,14 @@ module Api
 
             def update
                 @shipment = Shipment.find params[:id]
-                old_ship_prod = map_old_ship_prod
-                @shipment.shipment_products.destroy_all
+                # old_ship_prod = map_old_ship_prod
+                # @shipment.shipment_products.destroy_all
+                binding.pry
                 @shipment.update shipment_params
-                if was_modified(old_ship_prod, @shipment.shipment_products)
-                    @shipment.modified = true 
-                    @shipment.save
-                end 
+                # if was_modified(old_ship_prod, @shipment.shipment_products)
+                #     @shipment.modified = true 
+                #     @shipment.save
+                # end 
                 return render :show unless @shipment.invalid?
         
                 render json: { errors: @shipment.errors.messages },
@@ -109,7 +110,8 @@ module Api
             def shipment_params
                 params.require(:shipment)
                       .permit(:id, :date, :created_at, :status, :modified,
-                              shipment_products_attributes: [:product_id, :units ]
+                              shipment_products_attributes: [:product_id, :units ],
+                              shipped_products_attributes: [:product_id, :units ]
                     )
             end
             

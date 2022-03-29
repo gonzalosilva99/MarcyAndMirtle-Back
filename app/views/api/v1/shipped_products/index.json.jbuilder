@@ -1,0 +1,1 @@
+json.array! @shipped_products, partial: 'shipped_product', as: :shipped_product

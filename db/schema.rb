@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_26_194323) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_29_143059) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_26_194323) do
     t.boolean "modified"
   end
 
+  create_table "shipped_products", force: :cascade do |t|
+    t.integer "units"
+    t.bigint "product_id", null: false
+    t.bigint "shipment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_shipped_products_on_product_id"
+    t.index ["shipment_id"], name: "index_shipped_products_on_shipment_id"
+  end
+
   create_table "subsidiaries", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,4 +92,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_26_194323) do
   add_foreign_key "products", "categories"
   add_foreign_key "shipment_products", "products"
   add_foreign_key "shipment_products", "shipments"
+  add_foreign_key "shipped_products", "products"
+  add_foreign_key "shipped_products", "shipments"
 end

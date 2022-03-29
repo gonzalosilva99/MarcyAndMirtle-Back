@@ -1,8 +1,10 @@
 class Shipment < ApplicationRecord
     enum status: [:requested, :accepted, :cancelled]
     has_many :shipment_products
+    has_many :shipped_products
     has_many :products, through: :shipment_products
     accepts_nested_attributes_for :shipment_products, allow_destroy: true
+    accepts_nested_attributes_for :shipped_products, allow_destroy: true
     after_initialize :init
 
     def init 
