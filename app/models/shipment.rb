@@ -1,5 +1,5 @@
 class Shipment < ApplicationRecord
-    enum status: [:requested, :accepted, :cancelled]
+    enum status: [:requested, :accepted, :cancelled, :wasted]
     has_many :shipment_products
     has_many :shipped_products
     has_many :products, through: :shipment_products

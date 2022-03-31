@@ -17,7 +17,11 @@ module Api
             end
 
             def create
-                @shipment = Shipment.create(shipment_params.merge(status: :requested, modified: false))
+                if shipment_params[:status]
+                    @shipment = Shipment.create(shipment_params.merge(modified: false))
+                else 
+                    @shipment = Shipment.create(shipment_params.merge(status: :requested, modified: false))
+                end
             end
             
             def destroy
@@ -45,8 +49,12 @@ module Api
                     @amount_per_shipping = []
                     @amount_by_category = {}
                     @amount_by_product = {}
+                    @wasted_by_product = {}
+                    @total_wasted = 0
                     @shipments = Shipment.where("extract(month from created_at) = ? and extract(year from created_at) = ?", month, year)
-                    @shipments = @shipments.filter_by_status('accepted')
+                    wasted = @shipments.filter_by_status('wasted')
+                    @shipments = @shipments.filter_by_status(['accepted'])
+
                     @shipments.each do |shipment|
                         shipment.shipment_products.each do |ship_prod|
                             category = ship_prod.product.category
@@ -54,8 +62,14 @@ module Api
                             add_to_shipment(shipment.id, shipment.created_at.strftime("%e/%m/%Y"), price)
                             add_to_category(category.name,price)
                             add_to_product(ship_prod.product.name, price)
-                            
                         end 
+                    end
+                    wasted.each do |shipment|
+                        shipment.shipment_products.each do |ship_prod|
+                            price = ship_prod.units * ship_prod.product.price
+                            @total_wasted += price
+                            wasted_by_product(ship_prod.product.name,price)
+                        end
                     end
                 end
             end
@@ -106,6 +120,15 @@ module Api
                     @amount_by_product[name] = price
                 end
             end
+
+            def wasted_by_product(name,price)
+                if @wasted_by_product[name]
+                    @wasted_by_product[name] += price
+                else
+                    @wasted_by_product[name] = price
+                end
+            end
+
             def shipment_params
                 params.require(:shipment)
                       .permit(:id, :date, :created_at, :status, :modified,
