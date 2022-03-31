@@ -56,7 +56,7 @@ module Api
                     @shipments = @shipments.filter_by_status(['accepted'])
 
                     @shipments.each do |shipment|
-                        shipment.shipment_products.each do |ship_prod|
+                        shipment.shipped_products.each do |ship_prod|
                             category = ship_prod.product.category
                             price = ship_prod.units * ship_prod.product.price
                             add_to_shipment(shipment.id, shipment.created_at.strftime("%e/%m/%Y"), price)
